@@ -1,0 +1,192 @@
+import java.util.Scanner;
+
+public class Asgn7 {
+//attributes
+	int amountOfCustomers;	//how many customers there are
+	String customerNames[];	//name of the customer
+	int[] customerID;		//Customer ID
+  	double[] totalSales;		//Total sales by customer
+	String currentCustomers; //customers already input
+	int counter = 0;			//size counter
+  
+//Constructor	
+	public Asgn7(int customerAmount){
+		
+    amountOfCustomers = customerAmount;
+		customerNames = new String[amountOfCustomers];
+		customerID = new int[amountOfCustomers];
+		totalSales = new double[amountOfCustomers];
+		//currentCustomers;
+	}
+
+
+//OPTION1: this method is for storing customer data
+	public void customerData(Scanner scan) {
+		//Scanner scan = new Scanner(System.in);
+
+//ask for amount of customers
+		System.out.print("How many customers do you want to enter: ");
+		int amountOfCustomers = scan.nextInt();
+      
+//ask for customer names
+      for(int i = 0; i < amountOfCustomers; i++){
+    	  
+		System.out.print("Enter customer name: ");
+		String inputCustomerName = scan.next();
+		scan.nextLine();
+		customerNames[counter] = inputCustomerName;
+        
+//ask for customer ID
+		System.out.print("Enter 5 digit ID: ");
+		int inputCustomerID = scan.nextInt();
+		customerID[counter] = inputCustomerID;
+    
+//ask for total sales
+    	System.out.print("Enter total sales: ");
+    	int inputTotalSales = scan.nextInt();
+    	totalSales[counter] = inputTotalSales;
+        
+        counter++; 
+        
+       }//closes for loop
+	}//closes customer data method
+
+
+	
+
+//OPTION2: this method allows user to add another customer	
+	public void addNewCustomer(Scanner scan) {
+		//Scanner scan = new Scanner(System.in);
+
+//ask for amount of customers
+		System.out.print("How many customers do you want to enter: ");
+		amountOfCustomers = scan.nextInt();
+		
+//ask for customer names
+      for(int i = 0; i < amountOfCustomers; i++){
+    	  
+		System.out.print("Enter customer name: ");
+		String inputCustomerName = scan.next();
+		scan.nextLine();
+		customerNames[counter] = inputCustomerName;
+        
+//ask for customer ID
+		System.out.print("Enter 5 digit ID: ");
+		int inputCustomerID = scan.nextInt();
+		customerID[counter] = inputCustomerID;
+    
+//ask for total sales
+    	System.out.print("Enter total sales: ");
+    	int inputTotalSales = scan.nextInt();
+    	totalSales[counter] = inputTotalSales;
+        
+        counter++; 
+        
+       }//closes for loop
+	}
+
+//OPTION3 method to display all customers	
+	public void displayAllCustomers(Scanner scan) {
+//output all customers      
+	     System.out.println("Customer Data: ");
+	     for(int i = 0; i < counter; i++){
+	      System.out.println("Name: " + customerNames[i] + ", ID: " + customerID[i] + 
+	    		  ", Sales: $"+ totalSales[i] + "");
+	     }
+	}
+	
+//OPTION4: this method is to display specific customer data by conducting a sequential search
+	public void specificCustomer(Scanner scan) {
+		//Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Enter ID of customer you'd like to retrieve: ");
+		int retrieveID = scan.nextInt(); //store ID user wants to retrieve
+	
+		for (int i = 0; i < counter; i++) {
+			if (customerID[i] == retrieveID){
+				
+	      System.out.println("Name: " + customerNames[i] + ", ID: " + customerID[i] + 
+	    		  ", Sales: $"+ totalSales[i] + "");
+	      
+			}//closes if statement
+		}//closes for loop
+	}//closes method
+	
+			
+
+//OPTION5 method to	display customer range
+	public void customerRange(Scanner scan) {
+
+	System.out.print("Enter highest amount: "); 
+		int highestRange = scan.nextInt();
+        System.out.print("Enter lowest amount: ");
+		int lowestRange = scan.nextInt();
+              
+		for (int i = 0; i < counter; i++) {
+			if (totalSales[i] > lowestRange && totalSales[i] < highestRange) {
+				
+	      System.out.println("Name: " + customerNames[i] + ", ID: " + customerID[i] + 
+	    		  ", Sales: $"+ totalSales[i] + "");
+	      
+			}//closes if statement
+		}//closes for loop
+	}//closes method
+		
+
+
+//MAIN METHOD
+	public static void main(String[] args) {
+
+		Asgn7 menuSelection = new Asgn7(100);
+		boolean input = true; //initializing input statement for repeated prompt
+		Scanner scan = new Scanner(System.in); //open main method scanner
+		
+		do { //do statement for repeated prompt
+			System.out.println("	--MENU--	");
+			System.out.println("1: Load customer data.");
+			System.out.println("2: Add new customers.");
+			System.out.println("3: Display all customers.");
+			System.out.println("4: Retrieve specific customer’s data.");
+			System.out.println("5: Retrieve customers with total sales based on range.");
+			System.out.println("9: Exit program.");
+				//Prompt user for selection	based on options
+			System.out.print(" Enter Selection: ");
+		        int selection = scan.nextInt(); //stores selection
+						
+			
+//switch statement for selection and user input
+			switch(selection) {
+			
+				case 1: menuSelection.customerData(scan);
+					input = true;
+						break;
+					
+				case 2: menuSelection.addNewCustomer(scan);
+					input = true;
+						break;
+					
+				case 3: menuSelection.displayAllCustomers(scan);
+					input = true;
+						break;
+											
+				case 4: menuSelection.specificCustomer(scan);
+					input = true;
+						break;
+											
+				case 5: menuSelection.customerRange(scan);
+					input = true;
+						break;
+					
+				case 9: System.out.println("Thank you! Goodbye.");
+					input = false;
+						break;
+
+				default: System.out.println("Invalid. Try again!");
+					input = true;
+				}//closes switch statement
+			} while (input == true); //close loop if input is false
+		
+		scan.close(); //close main method scanner
+		
+	}//Closes Main method
+} //Closes Asgn7 Class
