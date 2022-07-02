@@ -1,0 +1,51 @@
+//Desmond Padilla -- Jan 25, 2022
+
+import java.util.Scanner;
+
+public class Assign1 {
+
+	public static void main(String[] args) {
+	
+		Scanner scandouble = new Scanner(System.in);
+		Scanner scanint = new Scanner(System.in);
+		Scanner scanstr = new Scanner(System.in);
+
+		System.out.print("Enter Customer ID: ");
+		int customerid = scanint.nextInt();
+		
+		System.out.print("Enter Unit Price: ");
+		double unitprice = scandouble.nextDouble();
+		
+		System.out.print("Enter Unit Quantity: ");
+		int unitquant = scanint.nextInt();
+		
+		System.out.print("Enter Product Desciption: ");
+		String proddescr = scanstr.nextLine();
+		
+		System.out.print("Enter Unit Discount: ");
+		double unitdisc = scandouble.nextDouble();
+		
+		System.out.println("");
+		
+		/*(2) Calculates the customer's overall order total before and after discount.*/
+		
+		System.out.println("Total Before Discount: $" + (unitprice * unitquant));
+		System.out.println("Total After Discount: $" + ((unitprice * unitquant) - unitdisc));
+		System.out.println("");
+			
+		/* (3) Displays the input data along with the order total before and after the discount to the console. */
+		
+		System.out.println("Details: ");
+		System.out.println("ID: " + customerid);
+		System.out.println("Price: $" + unitprice + ", Quantity: " + unitquant + ", Description: " + proddescr + ", Discount: $" + unitdisc);
+		System.out.println("Total Before Discount: $" + (unitprice * unitquant));
+		System.out.println("Total After Discount: $" + ((unitprice * unitquant) - unitdisc));
+		System.out.println("");
+		
+		scandouble.close();
+		scanint.close();
+		scanstr.close();
+		
+	}
+
+}
