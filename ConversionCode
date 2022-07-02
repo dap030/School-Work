@@ -1,0 +1,117 @@
+import java.util.Scanner;
+
+public class Asgn5 {
+	 //Desmond Padilla - 21 FEB 2022 - CMIS141
+	
+	//feet to bushels method //1 cubic foot = 0.803564 U. S. bushel 		
+		public static double selectVol(double cuFt) {
+			//double cuFt = 0;
+			double usBuTot = 0;
+			return usBuTot = cuFt * 0.803564;
+		}
+		
+	
+	//miles to km method //1 mile = 1.60934 km 
+		public static double selectDist(double mi) {
+			//double mi = 0;
+			double km = 0;
+				km = mi * 1.60934;
+			return km;
+		}
+		
+	
+	//honors graduation method //-Cum Laude: 3.5-3.7, -Magna Cum Laude: 3.8-3.9, -Summa Cum Laude: 4.0+  
+		public static String selectStatus(double gpa) {
+		//summa cum laude 
+			String honorStatus = null;
+		if (gpa >= 4.0) {
+			honorStatus = "Summa Cum Laude";
+		}
+		//magna cum laude
+		else if (gpa <= 3.9 && gpa >= 3.8) {
+			honorStatus = "Magna Cum Laude";
+		}
+		//cum laude
+		else if (gpa <= 3.7 && gpa >= 3.5) {
+			honorStatus = "Cum Laude";
+		}
+		//gpa too low
+		else if (gpa <= 3.4) {
+			honorStatus = "too low";
+		}
+		return honorStatus;
+		}	
+		
+	
+	//main method
+		public static void main(String[] args) {
+			
+	
+	//initialize scanner
+		Scanner scan = new Scanner(System.in);
+		
+		
+	//show users options
+		boolean input = true; //initializing input statement for repeated prompt
+	do { //do statement for repeated prompt
+		System.out.println("Which action do you want to take?");
+		System.out.println("	--MENU--	");
+		System.out.println("1: Convert cubic feet to U. S. bushels.");
+		System.out.println("2: Convert miles to kilometers (km).");
+		System.out.println("3: Determine graduation with honors title.");
+		System.out.println("9: Exit program.");
+		
+			//Prompt user for selection	based on options
+		
+		System.out.println("");
+		System.out.print("Enter Selection: ");
+	        int selection = scan.nextInt(); 
+		
+	        
+		
+		scan.nextLine();//clear scanner
+		
+		
+		
+		double honorStatus = 0, km = 0, usBuTot = 0;
+		
+	//switch statement for selection and user input
+		switch(selection) {
+		
+			case 1: selectVol(usBuTot);
+				System.out.print("Enter cubic feet: ");
+				double cuFt = scan.nextDouble();
+					System.out.println(cuFt + " cubic ft = " + selectVol(cuFt) + " U.S. Bushels");
+				input = true;
+					break;
+				
+			case 2: selectDist(km);
+				System.out.print("Enter miles: ");
+				double miTot = scan.nextDouble();
+					System.out.println(miTot + " miles = " + selectDist(miTot) + " km ");
+				input = true;
+					break;
+				
+			case 3: selectStatus(honorStatus);
+				System.out.print("Enter GPA: ");
+				double gpa = scan.nextDouble();
+					System.out.println(gpa + " GPA is " + selectStatus(gpa));
+					input = true;
+					break;
+				
+			case 9: 
+				System.out.println("Thank you! Goodbye.");
+				input = false;
+					break;
+
+			default: 
+				System.out.println("Invalid. Try again!");
+				input = true;
+			}
+		}
+		while (input == true); //close loop if input is false
+		
+		scan.close(); 
+	}
+
+}
